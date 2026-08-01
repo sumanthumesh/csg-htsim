@@ -51,7 +51,12 @@ star_topology.o: star_topology.cpp star_topology.h ${DEPS}
 	$(CC) $(INCLUDE) $(CFLAGS) -c star_topology.cpp 
 
 generic_topology.o: generic_topology.cpp generic_topology.h ${DEPS}
-	$(CC) $(INCLUDE) $(CFLAGS) -c generic_topology.cpp 
+	$(CC) $(INCLUDE) $(CFLAGS) -c generic_topology.cpp
+
+# Not linked into any htsim_* binary here; built by the ASTRA-sim htsim
+# frontend via its CMakeLists.  Rule kept so the standalone tree still builds it.
+edgelist_topology.o: edgelist_topology.cpp edgelist_topology.h topology.h ${DEPS}
+	$(CC) $(INCLUDE) $(CFLAGS) -c edgelist_topology.cpp
 
 shortflows.o: shortflows.cpp ${DEPS}
 	$(CC) $(INCLUDE) $(CFLAGS) -c shortflows.cpp 
